@@ -23,7 +23,7 @@ with c2:
 with c3:
     st.text(" \n")
     st.text(" \n")
-    st.image(Image.open('Images/march2.jpg'))
+    st.image(Image.open('Images/Basketball.jpg'))
 
 
 st.write("""
