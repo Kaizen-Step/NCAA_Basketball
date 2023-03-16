@@ -20,7 +20,7 @@ with open('style.css')as f:
 
 
 # Data Sources
-@st.cache()
+@st.cache_data()
 def get_data(query):
     if query == 'Huston_data':
         return pd.read_csv('Data/2023_NCAA_Match/Houston_2023.csv')

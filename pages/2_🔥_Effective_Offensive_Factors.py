@@ -19,21 +19,21 @@ with open('style.css')as f:
 
 
 # Data Sources
-@st.cache()
+@st.cache_data()
 def get_data(query):
     if query == 'Barttorvik_Team':
         return pd.read_csv('Data/barttorvik_2023.csv')
-    elif query == 'table':
-        return pd.read_csv('https://raw.githubusercontent.com/Kaizen-Step/Hollywood_Box_Office_Tragedy/main/Data/Domestic/Domestic-Yearly2.csv')
+    elif query == 'sensetive_analyse':
+        return pd.read_csv('Data/weights_O.csv')
     return None
 
 
 Barttorvik_Team = get_data('Barttorvik_Team')
-table = get_data('table')
+sensetive_analyse = get_data('sensetive_analyse')
 
 
 df = Barttorvik_Team
-df2 = table
+df2 = sensetive_analyse
 
 #################################################################################################
 st.write(""" ### Most Effective Factors ##  """)
@@ -93,11 +93,10 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -135,11 +134,10 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 ######################################################
@@ -175,11 +173,10 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -217,11 +214,10 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 ######################################################
@@ -257,11 +253,10 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 ####################################################################################################
 st.write(
@@ -298,11 +293,10 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 ############################################################################################################
 st.write(
@@ -339,11 +333,10 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 

@@ -19,7 +19,7 @@ with open('style.css')as f:
 
 
 # Data Sources
-@st.cache()
+@st.cache_data()
 def get_data(query):
     if query == 'Total_Genre':
         return pd.read_csv('https://raw.githubusercontent.com/Kaizen-Step/Hollywood_Box_Office_Tragedy/main/Data/Geners/Genre-Total.csv')

@@ -25,7 +25,7 @@ with open('style.css')as f:
 
 
 # Data Sources
-@st.cache()
+@st.cache_data()
 def get_data(query):
     if query == 'March2023_Team':
         return pd.read_csv('Data/March_Madness2023_Team/2023_Teams.csv')

@@ -19,21 +19,21 @@ with open('style.css')as f:
 
 
 # Data Sources
-@st.cache()
+@st.cache_data()
 def get_data(query):
     if query == 'Barttorvik_Team':
         return pd.read_csv('Data/barttorvik_2023.csv')
-    elif query == 'table':
-        return pd.read_csv('https://raw.githubusercontent.com/Kaizen-Step/Hollywood_Box_Office_Tragedy/main/Data/Domestic/Domestic-Yearly2.csv')
+    elif query == 'sensetive_analyse':
+        return pd.read_csv('Data/weights_D.csv')
     return None
 
 
 Barttorvik_Team = get_data('Barttorvik_Team')
-table = get_data('table')
+sensetive_analyse = get_data('sensetive_analyse')
 
 
 df = Barttorvik_Team
-df2 = table
+df2 = sensetive_analyse
 
 #################################################################################################
 st.write(""" ### Most Effective Defensive Factors ##  """)
@@ -67,12 +67,9 @@ st.write(""" ##  Defensive Factors ##  """)
 #########################################################
 st.write(""" ### Adjusted Defensive Efficiency     ##  """)
 
-st.write(""" Adjusted Defensive Efficiency (AOE) is a basketball statistic that measures how effectively a team scores points per possession, while accounting for the strength of the opposing team's defense. AOE is typically calculated by taking a team's points scored per 100 possessions and adjusting that number based on the strength of the opposing team's defense, as well as the pace of the game.
-One commonly used method for calculating AOE is to use the formula:      
-
-  AOE = (Points Scored / Possessions) * (League Average Efficiency / Opponent's Defensive Efficiency)     
-  
-By adjusting for the strength of the opposing team's defense and the pace of the game, AOE provides a more accurate measure of a team's Defensive performance than simply looking at their raw points scored per game.
+st.write(""" Adjusted Defensive Efficiency (ADE) is a statistical metric used in basketball to evaluate the effectiveness of a team's defense. ADE takes into account the number of points a team allows per possession, while adjusting for the strength of the opposing team's offense.
+To calculate ADE, the total points allowed by a team is divided by the total number of possessions their opponents had during the season, giving the team's Points Allowed Per Possession (PAPP) statistic. This number is then adjusted based on the strength of the opponents' offenses by subtracting the average PAPP of those offenses. The resulting number is the team's Adjusted Defensive Efficiency.
+ADE is considered a more accurate measure of a team's defensive ability than simply looking at the total points allowed over the course of a season, as it accounts for the quality of the teams faced.
    
 
   """)
@@ -97,11 +94,10 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 #################################################################################
@@ -134,13 +130,11 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
 
 ##############################################################
 st.write(""" ### Effective Field Goal Percentage Allowed  ##  """)
@@ -177,13 +171,11 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
 ######################################################
 
 st.write(""" ###  Turnover Percentage Allowed (Turnover Rate)  """)
@@ -215,13 +207,11 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
 
 ############################################################
 st.write(""" ### Free Throw Rate Allowed     ##  """)
@@ -257,13 +247,11 @@ with c1:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
 ######################################################
 
 st.write(""" ###  Two-Point Shooting Percentage Allowed       """)
@@ -297,13 +285,11 @@ with c1:
 
 
 with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
+                      yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-##########################################################################
 
 st.text(" \n")
 
