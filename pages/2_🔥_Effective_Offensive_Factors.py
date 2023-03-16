@@ -57,11 +57,16 @@ st.info(""" ##### In This Most Effective Offensive Factors you can find: ####
         """)
 
 ###################################################################
-st.write(""" ##  Offensive Factors description and Importance Evaluation ##  """)
+
+st.warning(" The Detailed explanation and multitude number of graphs might be over whelming to general audiance , visit the summary section at the end for brief informations")
+
+st.write(""" ##  Offensive Factors ##  """)
 
 st.write(""" In this section, we explained all the features and statistics of teams, with the top 10 teams being the best at each feature. We then used model sensitivity analysis to define which factor is more important than another. This section might be overwhelming to those who do not have intention to see the details; they can visit the summary section at the end for general ideas and rankings.
 """)
 #####################################################
+
+
 st.write(""" ### Adjusted Offensive Efficiency [ADJOE] ##  """)
 
 st.write(""" Adjusted Offensive Efficiency (AOE) is a basketball statistic that measures how effectively a team scores points per possession, while accounting for the strength of the opposing team's defense. AOE is typically calculated by taking a team's points scored per 100 possessions and adjusting that number based on the strength of the opposing team's defense, as well as the pace of the game.
@@ -300,7 +305,7 @@ with c2:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 ############################################################################################################
 st.write(
-    """ ### Free Throw Rate (How often the given team shoots Free Throws)  [FTR] """)
+    """ ### Two-Point Shooting Percentage """)
 
 st.write(""" Free Throw Rate (FTR) is a basketball statistic that measures how often a team attempts free throws in relation to their field goal attempts. It is calculated by dividing the number of free throw attempts by the number of field goal attempts.
 
@@ -314,7 +319,7 @@ Free throw rate can be used to analyze a team's offensive strategy and the effec
   """)
 
 # NCCA Team with Adjusted Offensive Efficiency
-fig = px.area(df.sort_values(by=['FTR'], ascending=False), x="TEAM", y="FTR",
+fig = px.area(df.sort_values(by=['2P%'], ascending=False), x="TEAM", y="2P%",
               title='NCCA Team with Free Throw Rate')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Free Throw Rate ')
@@ -325,10 +330,10 @@ c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-    fig = px.bar(df.sort_values(by=['FTR'], ascending=False).head(10), x="TEAM", y="FTR", color="TEAM",
-                 title='Top 10 Team with Most Free Throw Rate [Log Value]', log_y=True)
+    fig = px.bar(df.sort_values(by=['2P%'], ascending=False).head(10), x="TEAM", y="2P%", color="TEAM",
+                 title='Top 10 Team with Most Two-Point Shooting Percentage [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title=' Free Throw Rate ')
+                      yaxis_title=' Two-Point Shooting Percentage ')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -339,7 +344,86 @@ with c2:
                       yaxis_title='Sensitivity')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
+######################################################################################################
+st.write(
+    """ ### Three-Point Shooting Percentage  """)
 
+st.write(""" Free Throw Rate (FTR) is a basketball statistic that measures how often a team attempts free throws in relation to their field goal attempts. It is calculated by dividing the number of free throw attempts by the number of field goal attempts.
+
+The formula for Free Throw Rate is:
+
+FTR = Free Throw Attempts / Field Goal Attempts
+
+The resulting FTR value is a ratio, expressed as a decimal or a percentage. A higher FTR indicates that a team is more aggressive in attacking the basket and drawing fouls, which can be advantageous since free throws are uncontested shots that can lead to points without using the clock.
+Free throw rate can be used to analyze a team's offensive strategy and the effectiveness of individual players in drawing fouls and getting to the free-throw line.
+   
+  """)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['3P%'], ascending=False), x="TEAM", y="3P%",
+              title='NCCA Team with Three-Point Shooting Percentage')
+fig.update_layout(legend_title=None, xaxis_title=None,
+                  yaxis_title=' Three-Point Shooting Percentage')
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+c1, c2 = st.columns(2)
+
+with c1:
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['3P%'], ascending=False).head(10), x="TEAM", y="3P%", color="TEAM",
+                 title='Top 10 Team with Most Three-Point Shooting Percentage [Log Value]', log_y=True)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title=' Three-Point Shooting Percentage ')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+with c2:
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title='Sensitivity')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+###########################################################################################
+st.write(
+    """ ### Wins Above Bubble  """)
+
+st.write(""" Free Throw Rate (FTR) is a basketball statistic that measures how often a team attempts free throws in relation to their field goal attempts. It is calculated by dividing the number of free throw attempts by the number of field goal attempts.
+
+The formula for Free Throw Rate is:
+
+FTR = Free Throw Attempts / Field Goal Attempts
+
+The resulting FTR value is a ratio, expressed as a decimal or a percentage. A higher FTR indicates that a team is more aggressive in attacking the basket and drawing fouls, which can be advantageous since free throws are uncontested shots that can lead to points without using the clock.
+Free throw rate can be used to analyze a team's offensive strategy and the effectiveness of individual players in drawing fouls and getting to the free-throw line.
+   
+  """)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['WAB'], ascending=False), x="TEAM", y="WAB",
+              title='NCCA Team with Wins Above Bubble')
+fig.update_layout(legend_title=None, xaxis_title=None,
+                  yaxis_title=' Wins Above Bubble ')
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+c1, c2 = st.columns(2)
+
+with c1:
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['WAB'], ascending=False).head(10), x="TEAM", y="WAB", color="TEAM",
+                 title='Top 10 Team with Most Wins Above Bubble [Log Value]', log_y=True)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title=' Wins Above Bubble ')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+with c2:
+    fig = px.bar(df2, x="parameters", y="sensitivity",
+                 title='Parameters Sensivity analysis', log_y=False)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title='Sensitivity')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 #############################################################################################################
 
 st.text(" \n")

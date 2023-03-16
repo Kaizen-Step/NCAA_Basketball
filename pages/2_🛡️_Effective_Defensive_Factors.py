@@ -51,8 +51,9 @@ In this sectin we name the most effective Defensive Factores that we used in our
 
 st.info(""" ##### In This Most Effective Deffensive Factors you can find: ####    
 
-    * ADJ_T: Adjusted Tempo  
-    * ADJDE: Adjusted Defensive Efficiency      
+ 
+    * ADJDE: Adjusted Defensive Efficiency 
+    * ADJ_T: Adjusted Tempo       
     * EFG_D: Effective Field Goal Percentage Allowed  
     * TOR: Turnover Percentage Allowed (Turnover Rate)  
     * DRB: Offensive Rebound Rate Allowed   
@@ -63,6 +64,9 @@ st.info(""" ##### In This Most Effective Deffensive Factors you can find: ####
     """)
 
 ###################################################################
+
+st.warning(" The Detailed explanation and multitude number of graphs might be over whelming to general audiance , visit the summary section at the end for brief informations")
+
 st.write(""" ##  Defensive Factors ##  """)
 #########################################################
 st.write(""" ### Adjusted Defensive Efficiency     ##  """)
@@ -75,10 +79,10 @@ ADE is considered a more accurate measure of a team's defensive ability than sim
   """)
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['ADJOE'], ascending=False), x="TEAM", y="ADJOE",
+fig = px.area(df.sort_values(by=['ADJDE'], ascending=False), x="TEAM", y="ADJDE",
               title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title='ADJOE')
+                  yaxis_title='ADJDE')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -86,10 +90,10 @@ c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
-    fig = px.bar(df.sort_values(by=['ADJOE'], ascending=False).head(10), x="TEAM", y="ADJOE", color="TEAM",
+    fig = px.bar(df.sort_values(by=['ADJDE'], ascending=False).head(10), x="TEAM", y="ADJDE", color="TEAM",
                  title='Top 10 Team with Adjusted Defensive Efficiency [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='ADJOE')
+                      yaxis_title='ADJDE')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -111,7 +115,7 @@ ORR = Defensive rebounds / (Defensive rebounds + Opponents' defensive rebounds)
    
   """)
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+fig = px.area(df.sort_values(by=['ADJ_T'], ascending=False), x="TEAM", y="ADJ_T",
               title='NCCA Team with Adjusted Tempo')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Adjusted Tempo')
@@ -122,7 +126,7 @@ c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-    fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
+    fig = px.bar(df.sort_values(by=['ADJ_T'], ascending=False).head(10), x="TEAM", y="ADJ_T", color="TEAM",
                  title='Top 10 Team with Most Adjusted Tempo[Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Adjusted Tempo')
@@ -152,10 +156,10 @@ eFG% is particularly useful for evaluating players who are efficient at shooting
   """)
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+fig = px.area(df.sort_values(by=['EFGD%'], ascending=False), x="TEAM", y="EFGD%",
               title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title='EFG%')
+                  yaxis_title='EFGD%')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -163,10 +167,10 @@ c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
-    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+    fig = px.bar(df.sort_values(by=['EFGD%'], ascending=False).head(10), x="TEAM", y="EFGD%", color="TEAM",
                  title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='EFG%')
+                      yaxis_title='EFGD%')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -190,20 +194,20 @@ Steal Rate is used to evaluate a player's defensive ability and effectiveness in
   """)
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['TOR'], ascending=False), x="TEAM", y="TOR",
+fig = px.area(df.sort_values(by=['TORD'], ascending=False), x="TEAM", y="TORD",
               title='NCCA Team with Turnover Percentage Committed (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title=' Turnover Percentage')
+                  yaxis_title=' Turnover Percentage Allowed')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-    fig = px.bar(df.sort_values(by=['TOR'], ascending=False).head(10), x="TEAM", y="TOR", color="TEAM",
+    fig = px.bar(df.sort_values(by=['TORD'], ascending=False).head(10), x="TEAM", y="TORD", color="TEAM",
                  title='Top 10 Team with Most Turnover Percentage Committed (Steal Rate) [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title=' Turnover Percentage')
+                      yaxis_title=' Turnover Percentage Allowed')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:
@@ -216,23 +220,24 @@ with c2:
 ############################################################
 st.write(""" ### Free Throw Rate Allowed     ##  """)
 
-st.write(""" Effective Field Goal Percentage (eFG%) is a basketball statistic that measures a player's shooting efficiency. It is a modification of the traditional Field Goal Percentage (FG%), which only takes into account two-point field goals and three-point field goals.
-In contrast, eFG% takes into account the fact that three-point field goals are worth more than two-point field goals. The formula for eFG% is:  
+st.write(""" Free Throw Rate (FTR) is a basketball statistic that measures how often a team attempts free throws in relation to their field goal attempts. It is calculated by dividing the number of free throw attempts by the number of field goal attempts.
 
-eFG% = (FGM + 0.5 * 3PM) / FGA  
+The formula for Free Throw Rate is:
 
-where FGM is the number of field goals made, 3PM is the number of three-point field goals made, and FGA is the number of field goal attempts.  
-By adding 0.5 times the number of three-pointers made to the number of two-pointers made in the numerator, eFG% effectively weights three-pointers as if they were 1.5 two-pointers. This provides a more accurate picture of a player's shooting efficiency and helps to compare players who shoot a different mix of two-pointers and three-pointers.  
-eFG% is particularly useful for evaluating players who are efficient at shooting three-pointers. For example, a player who shoots 50% on two-point field goals and 33% on three-point field goals would have a FG% of 43.3%, which is below average. However, their eFG% would be 51.7%, which is above average because their three-pointers are weighted more heavily.   
+FTR = Free Throw Attempts / Field Goal Attempts
+
+The resulting FTR value is a ratio, expressed as a decimal or a percentage. A higher FTR indicates that a team is more aggressive in attacking the basket and drawing fouls, which can be advantageous since free throws are uncontested shots that can lead to points without using the clock.
+Free throw rate can be used to analyze a team's offensive strategy and the effectiveness of individual players in drawing fouls and getting to the free-throw line.
+   
    
 
   """)
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+fig = px.area(df.sort_values(by=['FTRD'], ascending=False), x="TEAM", y="FTRD",
               title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title='EFG%')
+                  yaxis_title='FTRD')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 
@@ -240,10 +245,10 @@ c1, c2 = st.columns(2)
 
 with c1:
     # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
-    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+    fig = px.bar(df.sort_values(by=['FTRD'], ascending=False).head(10), x="TEAM", y="FTRD", color="TEAM",
                  title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='EFG%')
+                      yaxis_title='FTRD')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 with c2:

@@ -1,10 +1,10 @@
-# Libraries
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.subplots as sp
-
+import pickle
+from PIL import Image
 # Theme
 theme_plotly = None  # None or streamlit
 
@@ -38,119 +38,97 @@ average_per_release = get_data('average_per_release')
 df = Total_Genre
 df2 = Number_of_Release
 df3 = average_per_release
-#################################################################################################
-st.write(""" ### Genre Concept ##  """)
+##########################################################################
+st.write(""" ### Machine Learning Model  ##  """)
 
 st.write("""
-A film genre is a stylistic or thematic category for motion pictures based on similarities either in the narrative elements, aesthetic approach, or the emotional response to the film. Drawing heavily from the theories of literary-genre criticism, film genres are usually delineated by "conventions, iconography, settings, narratives, characters and actors.With the proliferation of particular genres, film subgenres can also emerge: the legal drama, for example, is a sub-genre of drama that includes courtroom- and trial-focused movies.   [[6]](https://en.wikipedia.org/wiki/Film_genre)       
-
-The genres used in this dashboard are mostly detailed sub-genres that have recently been used in the film industry, different from the seven common genres that were used in art.
-
-   
-
+  Machine learning can be used to predict the outcome of basketball matches by training a model on historical data of past games. The model can analyze various factors such as team rankings, player statistics, and game conditions to identify patterns that may influence the game's result.
+The process of creating a basketball prediction model involves:     
+* Collecting data: Gathering data on past basketball games, including team rankings, player statistics, and game conditions  
+* Preprocessing data: Cleaning and preparing the data for analysis by handling missing values and converting it into a suitable format  
+* Feature engineering: Identifying the relevant features that can be used to train the model and engineering new features based on domain knowledge  
+* Model selection: Choosing an appropriate machine learning algorithm, such as decision trees, support vector machines, or neural networks, to train the model  
+* Training: Feeding the data into the chosen model and adjusting its parameters to optimize its performance  
+* Evaluation: Testing the model's performance on a separate set of data to assess its accuracy and generalization ability  
+* Deployment: Integrating the trained model into a larger system or application, where it can be used to make predictions on new basketball matches  
   """)
 
 
-st.info(""" ##### In This Genre Section you can find: ####
+st.info(""" ##### In This Model Section you can find: ####    
 
-* Top 7 Genre Based on All time Total Gross
-* Top 7 Genre Based on Number of Release
-* Top 7 Genre Based on Average Gross per Release
-
-
-
-""")
-
-
+ 
+    * Model Demonstraion
+    * Training the Model
+    * Future Plan
+    
+    """)
 #################################################################################################
-st.write(""" ## Top 7 Genre Based on All time Total Gross """)
+st.write(""" ### Model Demonstraion ##  """)
 
-st.write("""With 74 billion dollars in gross sales, the Adoption genre (a pre-existing work that has been transformed into a movie) is the most profitable of all time. The recent Marvel franchises had a big role in this outstanding results. The movie in this category with the biggest box office takings is "Avengers: Endgame." IMAX and 3D, with respective release numbers of 374 and 396, are honourable mentions in this ranking. """)
+st.write("""
+The neural network used consists of five neurons with a 20 percent dropout rate. Since we have access to a limited amount of data, the model cannot be too deep in order to avoid overfitting. In the following plots, you can see accuracy and loss values during the training process. Both of the training and validation sets converge to satisfactory values. The prediction on the test dataset set showed approximately 75 percent, which sounds acceptable.
+  """)
+
+st.write(""" ### Training the Model ##  """)
+
+st.write("""
+The dataset extracted by scraping has been used for this project. There are 44 columns in total in the dataset. Through sensitivity analysis and some trials and errors, several columns that were not as effective as others were removed. The remaining columns (features) are: RK1, Win_Rate1, 2P%1, 2P%D1, 3P%1, 3P%D1, ADJT.1, WAB1, RK2, Win_Rate2, 2P%2, 2P%D2, 3P%2, 3P%D2, ADJT.2, WAB2, Venue_Home, Venue_Away, and Venue_Neutral
+Win_Rate1 and Win_Rate2 are the number of wins divided by the total number of games of each team. The other features are extracted from the
+barttorvik website.
+  """)
+
+# load
+with open('Data/Prediction/Model History/trainHistoryDict', "rb") as file_pi:
+    history = pickle.load(file_pi)
+
+
+c1, c2 = st.columns(2)
+
+with c1:
+    # Plot accuracy
+    st.write(" ### Accuracy")
+    fig = go.Figure()
+
+    for accuracy in [history['accuracy'], history['val_accuracy']]:
+        fig = fig.add_trace(go.Scatter(y=accuracy))
+
+    fig.update_layout(legend_title=None, xaxis_title='Epoch',
+                      yaxis_title='Accuracy')
+
+    st.plotly_chart(fig)
+
+with c2:
+    # Plot loss
+    st.write(" ### Loss")
+    fig = go.Figure()
+
+    for loss in [history['loss'], history['val_loss']]:
+
+        fig = fig.add_trace(go.Scatter(y=loss))
+
+    fig.update_layout(legend_title=None, xaxis_title='Epoch',
+                      yaxis_title='Loss')
+
+    st.plotly_chart(fig)
+
+
+st.write("""  The loss and accuracy plots of some deeper networks are displayed here. You can see that since there is only a limited amount of data, the model can easily overfit. These plots show the accuracy of the model with 128 neurons in the hidden layer. In the bottom one, a dropout layer with a 20 percent dropout rate has been added. Despite alleviating the overfitting a little bit, it is still overfitting, as there is a significant difference between the training and validation dataset results.In the following picture, you can see the summary of the model.	 """)
 
 c1, c2 = st.columns(2)
 with c1:
-
-    # Top new contracts based on weekly transactions
-    fig = px.bar((df.head(7)), x="Genre", y="Total", color="Genre",
-                 title='Top Genre Based on All time Total Gross ')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Total Gross [USD]')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+    st.image(Image.open('Images/128 neurons - 1 layer - no drop out.png'), )
 with c2:
-    # Top new contracts based on weekly transactions
-    fig = px.area(df.head(7), x="Genre", y="Titles",
-                  title='Top Genre Number of Released Title')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Number of Title Released')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-
-st.table(df.head(7))
+    st.image(Image.open(
+        'Images/128 neurons - 1 layer - with 20 percent drop out.png'), )
 
 #####################################################
-st.write(""" ## Top 7 Genre Based on Number of Release """)
 
-st.write("""  The genres with the most releases were foreign language and documentary, although their overall revenue at the box office were so much lower than Adoption, which came in third.	 """)
+st.write(""" ### Future Plan ##  """)
 
 
-c1, c2 = st.columns(2)
-with c1:
-    # Top new contracts based on weekly transactions
-    fig = px.bar((df2.head(7)), x="Genre", y="Titles", color="Genre",
-                 title='Top Genre Based on Number of Release ')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Number of Release')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+st.write("""  In the following picture, you can see the summary of the model. The model used to predict the 34 matches in March Madness 2023 In the future, one of the best choices might be to use the pretrained model from decades and then put new teams and data in the last layer to predict the match result with better performance. In our future work, we will use data from decades ago to build a model with higher accuracy. and try different approaches like decision trees and others. """)
 
+c1, c2, c3 = st.columns(3)
 with c2:
-    # Top new contracts based on weekly transactions
-    fig = px.area(df2.head(7), x="Genre", y="Total",
-                  title='Top Genre Total Gross')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Total Gross [USD]')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-st.table(df2.head(7))
-
-
-# ######################################################
-st.write(""" ##  Top 7 Genre Based on Average Gross per Release """)
-
-st.write(""" Due to the small number of releases in some genres, the average gross per release was not useful enough. but, with a total of 374 movies released and 57 billion dollars in gross sales, IMAX (a proprietary system of very large screens with a tall aspect ratio, high-resolution cameras, film formats, film projectors, and theatres) deserves an honourable mention here. """)
-
-c1, c2 = st.columns(2)
-with c1:
-    # Top new contracts based on weekly transactions
-    fig = px.bar((df3.head(7)), x="Genre", y="Average Per Release", color="Genre",
-                 title='Top Genre Based on Number of Movie Released ')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Average Gross per Release')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-with c2:
-    # Top new contracts based on weekly transactions
-    fig = px.area(df3.head(7), x="Genre", y="Titles",
-                  title='Number of Released Top Genre Total Gross Revenue ')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Number of Release')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-st.table(df3.head(7))
-
-
-##########################################################################
-
-st.text(" \n")
-
-st.info(""" #### Summary: ####
-
-
-* The adoption genre is currently the most profitable of all time, with gross sales of 74 billion dollars
-* Foreign language and documentaries were the categories with the most number of releases
-* The category deserving of attention is IMAX, with 153 million in average box office receipts per movie
-* The average gross per release was insufficient because there weren't many releases in some genres
-  
-
-""")
+    st.image(Image.open('Images/model_plot.png'), )
