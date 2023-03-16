@@ -64,7 +64,7 @@ st.info(""" ##### In This Most Effective Deffensive Factors you can find: ####
     """)
 
 ###################################################################
-
+st.warning(" The Detailed explanation and multitude number of graphs might be over whelming to general audiance , visit the summary section at the end for brief informations")
 
 st.write(""" ##  Defensive Factors ##  """)
 #########################################################
