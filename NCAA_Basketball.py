@@ -34,16 +34,17 @@ The tournament teams include champions from 32 Division I conferences (which rec
 
 st.write("""
 ## Methodology ##   
-Even among non-sports fans, it has become quite prevalent in popular culture to predict the results of each game; it is estimated that tens of millions of Americans take part in a bracket pool contest each year. Have you ever wondered if it's possible to predict the outcome of NCAA basketball matches with the help of machine learning? Well, wonder no more!  We tried to gather the immense amount of data on NCAA basketball games, and trained machine learning algorithms to analyze team statistics, past Offenisve and Defensive performance and other factors  the outcome of future matches. In this dashboard after explainig dataset gathering and cleansing procedure we discuss about most effective teams factors that could impact on match result and explained them in details and by usinig sensivity anlaysis of model define which one is more effective than another. in model section we discuss about number of layers and nerouns different activation functions and different optimal features of network.then investigate any cinderal stories possibility during 34 march madness 2023 comparing model prediction with teams official ranking. By using machine learning to predict the results of NCAA basketball matches, you can increase your chances of making accurate predictions and enhance your overall enjoyment of the sport.
+Even among non-sports fans, it has become quite prevalent in popular culture to predict the results of each game; it is estimated that tens of millions of Americans take part in a bracket pool contest each year. Have you ever wondered if it's possible to predict the outcome of NCAA basketball matches with the help of machine learning? Well, wonder no more!  We tried to gather the immense amount of data on NCAA basketball games, and trained machine learning algorithms to analyze team statistics, past Offenisve and Defensive performance and other factors  the outcome of future matches. After explaining the dataset gathering and cleansing procedure, we discuss the most effective teams' factors that could impact match results and explain them in detail, then we use sensivity analysis of the model to determine which one is more effective than another.  in model section we discuss about number of layers and nerouns different activation functions and different optimal features of network.then investigate any cinderal stories possibility during 34 march madness 2023 comparing model prediction with teams official ranking. at last you can find match prediction application  which by using machine learning to predict the results of NCAA basketball matches, you can increase your chances of making accurate predictions and enhance your overall enjoyment of the sport.
 """)
 
 
 st.text(" \n")
 st.write("""   
 #### Sources ####  """)
-st.write("""    1.https://www.ncaa.org/news/2022/3/10/media-center-from-authorized-sources.aspx   
-        2.https://www.bannersontheparkway.com/2023/2/13/23598002/rule-15-2-a-and-the-state-of-officials-in-college-basketball-big-east  
-        3.https://www.boxofficemojo.com/
+st.write("""    1.https://www.ncaa.org/news/2022/3/10/media-center-from-authorized-sources.aspx     
+        2.https://www.bannersontheparkway.com/2023/2/13/23598002/rule-15-2-a-and-the-state-of-officials-in-college-basketball-big-east    
+        3.https://kenpom.com/    
+        4.https://barttorvik.com/trank.php#  
             """)
 
 
@@ -53,10 +54,10 @@ with c1:
     st.info(
         '**Twitter:  [Ludwig.1989](https://flipsidecrypto.xyz/)**', icon="🕊️")
     st.info(
-        '**Data Set (1):  [IMDB Box office Mojo (Kaggle)](https://www.kaggle.com/code/jonbown/box-office-mojo-web-scraping-with-python)**', icon="🧠")
+        '**Data Set (1):  [Our own upploaded Data Set Match Results (Kaggle)](https://www.kaggle.com/datasets/kaizenstep/ncaa-2023-all-games-results)**', icon="🧠")
 
 with c2:
     st.info(
-        '**Project Github:  [Hollywood Box Office](https://github.com/Kaizen-Step/Hollywood_Box_Office_Tragedy)**', icon="💻")
+        '**Project Github:  [NCAA Basketball](https://github.com/Kaizen-Step/NCAA_Basketball)**', icon="💻")
     st.info(
-        '**Data Set (2):  [IMDB Box office Mojo (Kaggle)](https://www.kaggle.com/datasets/thedevastator/hollywood-movies-domestic-lifetime-gross-and-ran?resource=download)**', icon="🧠")
+        '**Data Set (2):  [Barttorvik](https://barttorvik.com/trank.php#)**', icon="🧠")
