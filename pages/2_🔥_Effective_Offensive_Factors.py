@@ -57,8 +57,10 @@ st.info(""" ##### In This Most Effective Offensive Factors you can find: ####
         """)
 
 ###################################################################
-st.write(""" ##  Offensive Factors ##  """)
+st.write(""" ##  Offensive Factors description and Importance Evaluation ##  """)
 
+st.write(""" In this section, we explained all the features and statistics of teams, with the top 10 teams being the best at each feature. We then used model sensitivity analysis to define which factor is more important than another. This section might be overwhelming to those who do not have intention to see the details; they can visit the summary section at the end for general ideas and rankings.
+""")
 #####################################################
 st.write(""" ### Adjusted Offensive Efficiency [ADJOE] ##  """)
 
@@ -71,9 +73,10 @@ By adjusting for the strength of the opposing team's defense and the pace of the
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['ADJOE'], ascending=False).head(10), x="TEAM", y="ADJOE", color="TEAM",
-             title='Top 10 Team with Adjusted Offensive Efficiency [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['ADJOE'], ascending=False), x="TEAM", y="ADJOE",
+              title='NCCA Team with Adjusted Offensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='ADJOE')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -82,12 +85,13 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['ADJOE'], ascending=False), x="TEAM", y="ADJOE",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Offensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['ADJOE'], ascending=False).head(10), x="TEAM", y="ADJOE", color="TEAM",
+                 title='Top 10 Team with Adjusted Offensive Efficiency [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='ADJOE')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -111,9 +115,10 @@ eFG% is particularly useful for evaluating players who are efficient at shooting
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
-             title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+              title='NCCA Team with Adjusted Offensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='EFG%')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -122,12 +127,13 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Offensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+                 title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='EFG%')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -148,9 +154,10 @@ Where "Team Minutes" refers to the total number of minutes played by the player'
 Steal Rate is used to evaluate a player's defensive ability and effectiveness in causing turnovers. A high Steal Rate indicates that a player is skilled at anticipating and disrupting passing lanes, and is successful at stealing the ball from opposing players.   
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['TOR'], ascending=False).head(10), x="TEAM", y="TOR", color="TEAM",
-             title='Top 10 Team with Most Turnover Percentage Committed (Steal Rate) [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['TOR'], ascending=False), x="TEAM", y="TOR",
+              title='NCCA Team with Turnover Percentage Committed (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Turnover Percentage')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -159,12 +166,14 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['TOR'], ascending=False), x="TEAM", y="TOR",
-                  title='NCCA Team with Turnover Percentage Committed (Steal Rate)')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['TOR'], ascending=False).head(10), x="TEAM", y="TOR", color="TEAM",
+                 title='Top 10 Team with Most Turnover Percentage Committed (Steal Rate) [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Turnover Percentage')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -188,9 +197,10 @@ eFG% is particularly useful for evaluating players who are efficient at shooting
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
-             title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+              title='NCCA Team with Adjusted Offensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='EFG%')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -199,12 +209,13 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Offensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+                 title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='EFG%')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -226,9 +237,10 @@ ORR can be calculated for individual players as well as for teams. The formula f
 ORR = Offensive rebounds / (Offensive rebounds + Opponents' defensive rebounds)
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
-             title='Top 10 Team with Most Offensive Rebound Rate [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+              title='NCCA Team with Offensive Rebound Rate (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Offensive Rebound Rate')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -237,12 +249,13 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
-                  title='NCCA Team with Offensive Rebound Rate (Steal Rate)')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
+                 title='Top 10 Team with Most Offensive Rebound Rate [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Offensive Rebound Rate')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -264,9 +277,10 @@ The resulting FTR value is a ratio, expressed as a decimal or a percentage. A hi
 Free throw rate can be used to analyze a team's offensive strategy and the effectiveness of individual players in drawing fouls and getting to the free-throw line.
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['FTR'], ascending=False).head(10), x="TEAM", y="FTR", color="TEAM",
-             title='Top 10 Team with Most Free Throw Rate [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['FTR'], ascending=False), x="TEAM", y="FTR",
+              title='NCCA Team with Free Throw Rate')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Free Throw Rate ')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -275,12 +289,14 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['FTR'], ascending=False), x="TEAM", y="FTR",
-                  title='NCCA Team with Free Throw Rate')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['FTR'], ascending=False).head(10), x="TEAM", y="FTR", color="TEAM",
+                 title='Top 10 Team with Most Free Throw Rate [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Free Throw Rate ')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -302,9 +318,10 @@ The resulting FTR value is a ratio, expressed as a decimal or a percentage. A hi
 Free throw rate can be used to analyze a team's offensive strategy and the effectiveness of individual players in drawing fouls and getting to the free-throw line.
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['FTR'], ascending=False).head(10), x="TEAM", y="FTR", color="TEAM",
-             title='Top 10 Team with Most Free Throw Rate [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Offensive Efficiency
+fig = px.area(df.sort_values(by=['FTR'], ascending=False), x="TEAM", y="FTR",
+              title='NCCA Team with Free Throw Rate')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Free Throw Rate ')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -313,12 +330,14 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['FTR'], ascending=False), x="TEAM", y="FTR",
-                  title='NCCA Team with Free Throw Rate')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['FTR'], ascending=False).head(10), x="TEAM", y="FTR", color="TEAM",
+                 title='Top 10 Team with Most Free Throw Rate [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Free Throw Rate ')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",

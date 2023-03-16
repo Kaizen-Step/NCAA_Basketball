@@ -24,20 +24,20 @@ with open('style.css')as f:
 def get_data(query):
     if query == 'Huston_data':
         return pd.read_csv('Data/2023_NCAA_Match/Houston_2023.csv')
-    elif query == 'Weekly_2023':
-        return pd.read_csv('https://raw.githubusercontent.com/Kaizen-Step/Hollywood_Box_Office_Tragedy/main/Data/Domestic/Y23/Y23-Weekly.csv')
-    elif query == 'daily_table':
-        return pd.read_csv('https://raw.githubusercontent.com/Kaizen-Step/Hollywood_Box_Office_Tragedy/main/Data/Domestic/Y23/Y23-Daily2.csv')
+    elif query == 'Barttorvik':
+        return pd.read_csv('Data/barttorvik_2023.csv')
+    elif query == 'kepnom':
+        return pd.read_csv('Data/Kenpom_2023.csv')
     return None
 
 
 Huston_data = get_data('Huston_data')
-Weekly_2023 = get_data('Weekly_2023')
-daily_table = get_data('daily_table')
+Barttorvik = get_data('Barttorvik')
+kepnom = get_data('kepnom')
 
 df = Huston_data
-df2 = Weekly_2023
-df3 = daily_table
+df2 = Barttorvik
+df3 = kepnom
 
 #################################################################################################
 st.write(""" ### Data Gathering     """)
@@ -51,16 +51,14 @@ st.write(""" In order to create an effective NCAA match prediction application, 
 st.info(""" ##### In This Data Gathering Section you can find: ####
 
 * NCAA Match played in 2023 with detailed result   
-* Each team different Factors Data sets in Kepnom
 * Each team different Factors Data sets in barttorvick
+* Further investigation in Kenpom ranking site
 
 """)
 
 
 #################################################################################################
 
-
-#####################################################
 
 st.write(""" ## NCAA Match played in 2023 with detailed result     """)
 
@@ -70,10 +68,16 @@ st.write(""" NCAA matches played data sets are collections of data that record v
 st.table(df.head(10))
 
 
-st.write(""" ## Each team different Factors Data sets """)
-st.write(""" The average number of daily movies released in 2019 (prior to the Covid-19 pandemic) was 54, but this figure dropped significantly to 32.4 in 2023, possibly due to an increase in the number of big production movies, as discussed in the previous section.
+st.write(""" ##  Gathering Data of team statistics and Important Factors in barttorvick """)
+st.write(""" There are lots of different statistics and features of teams and players that could influence the match result. In search of good parameters for our model, we use [barttorvick.com](https://barttorvik.com) 2023 annual ranking and features. At the following, you could see this statistics of the top 10 out of 363 teams. The statistics and factors were thoroughly explained in Effective Offensive and Defensive Section.
 """)
+st.table(df2.head(10))
 
+##################################################################################
+st.write(""" ##  Further investigation in Kenpom ranking site """)
+st.write(""" We also used [Kenpom's](https://kenpom.com/) ranking and statistics, which are mostly the same as Battrovick's with a few differences, for further exploration and as in the bounty example suggested. These data were compiled into a single table data set and subjected to a sensibility analysis, which is covered in detail in the following two sections. .The following table lists the top 10 teams according to Kepnom. 
+""")
+st.table(df3.head(10))
 
 ##########################################################################
 
@@ -82,10 +86,10 @@ st.text(" \n")
 st.info(""" #### Summary: ####
 
 
-* The average daily top-ten movie gross for the first two months of 2023 was \$17.65 million
-* On February 17, "Ant-Man and the Wasp: Quantumania" brought in \$46.5 million of the \$54.71 million total
-* The market was easily influenced by a single big production movie
-* In 2019, there were 54 average daily movie releases, however this number fell to 32.4 in 2023
-* The market's weekly gross change increased by 135% with the release of "Ant-Man and the Wasp: Quantumania" on February 17
+* 1131 match result which all held in 2022-2023 scraped from Battrovik site and put in kaggle for public usage
+* all attribute and statistics of 363 teams and players invovled in NCAA devision scraped from Battrovik site and gathered in one table
+* for further exploration features in Kenpom ranking site also scrape and added to data set
+
+
 
 """)

@@ -64,61 +64,22 @@ st.info(""" ##### In This Most Effective Deffensive Factors you can find: ####
 
 ###################################################################
 st.write(""" ##  Defensive Factors ##  """)
-
-#####################################################
-
-st.write(""" ### Adjusted Tempo [ADJ_T]        """)
-
-st.write(""" Offensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of offensive rebounds divided by the total number of missed field goals and missed free throws by that team.
-
-ORR is a useful statistic because offensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
-
-ORR can be calculated for individual players as well as for teams. The formula for ORR is:
-
-ORR = Offensive rebounds / (Offensive rebounds + Opponents' defensive rebounds)
-   
-  """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
-             title='Top 10 Team with Most Offensive Rebound Rate [Log Value]', log_y=True)
-fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title=' Offensive Rebound Rate')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-c1, c2 = st.columns(2)
-
-with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
-                  title='NCCA Team with Offensive Rebound Rate (Steal Rate)')
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title=' Offensive Rebound Rate')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-with c2:
-    # Hollywood Industry Gross Yearly change Rate[USD]
-    fig = px.line(df2.tail(24), x="Year", y="%± LY",
-                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Change Rate')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
 #########################################################
 st.write(""" ### Adjusted Defensive Efficiency     ##  """)
 
-st.write(""" Adjusted Offensive Efficiency (AOE) is a basketball statistic that measures how effectively a team scores points per possession, while accounting for the strength of the opposing team's defense. AOE is typically calculated by taking a team's points scored per 100 possessions and adjusting that number based on the strength of the opposing team's defense, as well as the pace of the game.
+st.write(""" Adjusted Defensive Efficiency (AOE) is a basketball statistic that measures how effectively a team scores points per possession, while accounting for the strength of the opposing team's defense. AOE is typically calculated by taking a team's points scored per 100 possessions and adjusting that number based on the strength of the opposing team's defense, as well as the pace of the game.
 One commonly used method for calculating AOE is to use the formula:      
 
   AOE = (Points Scored / Possessions) * (League Average Efficiency / Opponent's Defensive Efficiency)     
   
-By adjusting for the strength of the opposing team's defense and the pace of the game, AOE provides a more accurate measure of a team's offensive performance than simply looking at their raw points scored per game.
+By adjusting for the strength of the opposing team's defense and the pace of the game, AOE provides a more accurate measure of a team's Defensive performance than simply looking at their raw points scored per game.
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['ADJOE'], ascending=False).head(10), x="TEAM", y="ADJOE", color="TEAM",
-             title='Top 10 Team with Adjusted Offensive Efficiency [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['ADJOE'], ascending=False), x="TEAM", y="ADJOE",
+              title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='ADJOE')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -127,12 +88,51 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['ADJOE'], ascending=False), x="TEAM", y="ADJOE",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['ADJOE'], ascending=False).head(10), x="TEAM", y="ADJOE", color="TEAM",
+                 title='Top 10 Team with Adjusted Defensive Efficiency [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='ADJOE')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+with c2:
+    # Hollywood Industry Gross Yearly change Rate[USD]
+    fig = px.line(df2.tail(24), x="Year", y="%± LY",
+                  title='Hollywood Industry Yearly Gross change Rate', log_y=False)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title='Change Rate')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+#################################################################################
+st.write(""" ### Adjusted Tempo [ADJ_T]        """)
+
+st.write(""" Defensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of Defensive rebounds divided by the total number of missed field goals and missed free throws by that team.
+ORR is a useful statistic because Defensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
+ORR can be calculated for individual players as well as for teams. The formula for ORR is:
+
+ORR = Defensive rebounds / (Defensive rebounds + Opponents' defensive rebounds)
+   
+  """)
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+              title='NCCA Team with Adjusted Tempo')
+fig.update_layout(legend_title=None, xaxis_title=None,
+                  yaxis_title=' Adjusted Tempo')
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
+c1, c2 = st.columns(2)
+
+with c1:
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
+                 title='Top 10 Team with Most Adjusted Tempo[Log Value]', log_y=True)
+    fig.update_layout(legend_title=None, xaxis_title=None,
+                      yaxis_title=' Adjusted Tempo')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -156,9 +156,10 @@ eFG% is particularly useful for evaluating players who are efficient at shooting
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
-             title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+              title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='EFG%')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -167,12 +168,14 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+                 title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='EFG%')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -193,23 +196,24 @@ Where "Team Minutes" refers to the total number of minutes played by the player'
 Steal Rate is used to evaluate a player's defensive ability and effectiveness in causing turnovers. A high Steal Rate indicates that a player is skilled at anticipating and disrupting passing lanes, and is successful at stealing the ball from opposing players.   
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['TOR'], ascending=False).head(10), x="TEAM", y="TOR", color="TEAM",
-             title='Top 10 Team with Most Turnover Percentage Committed (Steal Rate) [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['TOR'], ascending=False), x="TEAM", y="TOR",
+              title='NCCA Team with Turnover Percentage Committed (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Turnover Percentage')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['TOR'], ascending=False), x="TEAM", y="TOR",
-                  title='NCCA Team with Turnover Percentage Committed (Steal Rate)')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['TOR'], ascending=False).head(10), x="TEAM", y="TOR", color="TEAM",
+                 title='Top 10 Team with Most Turnover Percentage Committed (Steal Rate) [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title=' Turnover Percentage')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -233,9 +237,10 @@ eFG% is particularly useful for evaluating players who are efficient at shooting
    
 
   """)
-# Top 10 Team with Adjusted Offensive Efficiency [Log Value]
-fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
-             title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
+
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
+              title='NCCA Team with Adjusted Defensive Efficiency')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title='EFG%')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -244,12 +249,13 @@ st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['EFG%'], ascending=False), x="TEAM", y="EFG%",
-                  title='NCCA Team with Adjusted Offensive Efficiency')
+    # Top 10 Team with Adjusted Defensive Efficiency [Log Value]
+    fig = px.bar(df.sort_values(by=['EFG%'], ascending=False).head(10), x="TEAM", y="EFG%", color="TEAM",
+                 title='Top 10 Team with Most Effective Field Goal Percentage Shot [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
                       yaxis_title='EFG%')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
@@ -262,32 +268,34 @@ with c2:
 
 st.write(""" ###  Two-Point Shooting Percentage Allowed       """)
 
-st.write(""" Offensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of offensive rebounds divided by the total number of missed field goals and missed free throws by that team.
+st.write(""" Defensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of Defensive rebounds divided by the total number of missed field goals and missed free throws by that team.
 
-ORR is a useful statistic because offensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
+ORR is a useful statistic because Defensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
 
 ORR can be calculated for individual players as well as for teams. The formula for ORR is:
 
-ORR = Offensive rebounds / (Offensive rebounds + Opponents' defensive rebounds)
+ORR = Defensive rebounds / (Defensive rebounds + Opponents' defensive rebounds)
    
   """)
-# Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
-             title='Top 10 Team with Most Offensive Rebound Rate [Log Value]', log_y=True)
-fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title=' Offensive Rebound Rate')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
+# NCCA Team with Adjusted Defensive Efficiency
+fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+              title='NCCA Team with Defensive Rebound Rate (Steal Rate)')
+fig.update_layout(legend_title=None, xaxis_title=None,
+                  yaxis_title=' Defensive Rebound Rate')
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 c1, c2 = st.columns(2)
 
 with c1:
-    # NCCA Team with Adjusted Offensive Efficiency
-    fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
-                  title='NCCA Team with Offensive Rebound Rate (Steal Rate)')
+    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
+    fig = px.bar(df.sort_values(by=['ORB'], ascending=False).head(10), x="TEAM", y="ORB", color="TEAM",
+                 title='Top 10 Team with Most Defensive Rebound Rate [Log Value]', log_y=True)
     fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title=' Offensive Rebound Rate')
+                      yaxis_title=' Defensive Rebound Rate')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+
 with c2:
     # Hollywood Industry Gross Yearly change Rate[USD]
     fig = px.line(df2.tail(24), x="Year", y="%± LY",
