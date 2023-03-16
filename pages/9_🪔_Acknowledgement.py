@@ -50,6 +50,7 @@ st.write("""
         2.https://www.bannersontheparkway.com/2023/2/13/23598002/rule-15-2-a-and-the-state-of-officials-in-college-basketball-big-east    
         3.https://kenpom.com/    
         4.https://barttorvik.com/trank.php#  
+        5.https://www.sas.com/en_gb/insights/articles/analytics/machine-learning-algorithms.html#:~:text=At%20its%20most%20basic%2C%20machine,developing%20'intelligence'%20over%20time. 
     
 
 """)

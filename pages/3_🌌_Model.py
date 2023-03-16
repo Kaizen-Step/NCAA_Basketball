@@ -66,7 +66,7 @@ st.info(""" ##### In This Model Section you can find: ####
 st.write(""" ### Model Demonstraion ##  """)
 
 st.write("""
-The neural network used consists of five neurons with a 20 percent dropout rate. Since we have access to a limited amount of data, the model cannot be too deep in order to avoid overfitting. In the following plots, you can see accuracy and loss values during the training process. Both of the training and validation sets converge to satisfactory values. The prediction on the test dataset set showed approximately 75 percent, which sounds acceptable.
+The neural network used consists of five neurons with a 20 percent dropout rate. Since we have access to a limited amount of data, the model cannot be too deep in order to avoid overfitting. In the following plots, you can see accuracy and loss values during the training process. Both of the training and validation sets converge to satisfactory values. The prediction on the test dataset set showed approximately 75 percent, which sounds acceptable. 
   """)
 
 st.write(""" ### Training the Model ##  """)
@@ -74,7 +74,7 @@ st.write(""" ### Training the Model ##  """)
 st.write("""
 The dataset extracted by scraping has been used for this project. There are 44 columns in total in the dataset. Through sensitivity analysis and some trials and errors, several columns that were not as effective as others were removed. The remaining columns (features) are: RK1, Win_Rate1, 2P%1, 2P%D1, 3P%1, 3P%D1, ADJT.1, WAB1, RK2, Win_Rate2, 2P%2, 2P%D2, 3P%2, 3P%D2, ADJT.2, WAB2, Venue_Home, Venue_Away, and Venue_Neutral
 Win_Rate1 and Win_Rate2 are the number of wins divided by the total number of games of each team. The other features are extracted from the
-barttorvik website.
+barttorvik website. The activation function that showed the best accuracy was relu for a hidden layer and sigmoid for an output layer.
   """)
 
 # load
@@ -127,7 +127,7 @@ with c2:
 st.write(""" ### Future Plan ##  """)
 
 
-st.write("""  In the following picture, you can see the summary of the model. The model used to predict the 34 matches in March Madness 2023 In the future, one of the best choices might be to use the pretrained model from decades and then put new teams and data in the last layer to predict the match result with better performance. In our future work, we will use data from decades ago to build a model with higher accuracy. and try different approaches like decision trees and others. """)
+st.write("""  In the following picture, you can see the summary of the model.The model used to predict the 34 matches in March Madness 2023 In the future, one of the best choices might be to use the pretrained model from decades and then put new teams and data in the last layer to better predict the match results and data in the last layer to better predict the match result. In our future work, we will use data from decades ago to build a model with higher accuracy. and try different approaches like decision trees and others.""")
 
 c1, c2, c3 = st.columns(3)
 with c2:
