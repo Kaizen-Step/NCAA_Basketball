@@ -431,10 +431,9 @@ st.text(" \n")
 st.info(""" #### Summary: ####
 
 
-* As a result of the COVID-19 pandemic, the Hollywood annual gross dropped from \$11.36 billion in 2019 to \$2.11 billion in 2020
-* Annual gross has steadily increased, reaching nearly \$7.36 billion in 2022—a more than 112% increase in a single year.
-* Since 2000, the number of movies released has continuously risen, with 2018 seeing a record-breaking 993 movies released in a single year
-* The total gross fell by 82% in 2020 while the number of movies released fell by 44%.
-* Each movie's average gross revenue rose from \$12 million in 2019 to \$14.84 million in 2022.
+* Collgate was the team with best offensive record wich ranked first in 3 category
+* Gongoza also showed aggresive performance and ranked first in 2 factors
+* Huston and Alabama which ranked first in battrovick ranking were not in single top five in different factores
+* UCLA showed good statistics in offensive features among top ranking teams
 
 """)

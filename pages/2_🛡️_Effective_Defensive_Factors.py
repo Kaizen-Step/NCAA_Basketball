@@ -65,7 +65,6 @@ st.info(""" ##### In This Most Effective Deffensive Factors you can find: ####
 
 ###################################################################
 
-st.warning(" The Detailed explanation and multitude number of graphs might be over whelming to general audiance , visit the summary section at the end for brief informations")
 
 st.write(""" ##  Defensive Factors ##  """)
 #########################################################
@@ -226,20 +225,9 @@ with c2:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 ######################################################
 
-st.write(""" ###  Two-Point Shooting Percentage Allowed       """)
-
-st.write(""" Defensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of Defensive rebounds divided by the total number of missed field goals and missed free throws by that team.
-
-ORR is a useful statistic because Defensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
-
-ORR can be calculated for individual players as well as for teams. The formula for ORR is:
-
-ORR = Defensive rebounds / (Defensive rebounds + Opponents' defensive rebounds)
-   
-  """)
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+fig = px.area(df7.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
               title='NCCA Team with Defensive Rebound Rate (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Defensive Rebound Rate')
@@ -264,14 +252,3 @@ with c2:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 st.text(" \n")
-
-st.info(""" #### Summary: ####
-
-
-* As a result of the COVID-19 pandemic, the Hollywood annual gross dropped from \$11.36 billion in 2019 to \$2.11 billion in 2020
-* Annual gross has steadily increased, reaching nearly \$7.36 billion in 2022—a more than 112% increase in a single year.
-* Since 2000, the number of movies released has continuously risen, with 2018 seeing a record-breaking 993 movies released in a single year
-* The total gross fell by 82% in 2020 while the number of movies released fell by 44%.
-* Each movie's average gross revenue rose from \$12 million in 2019 to \$14.84 million in 2022.
-
-""")
