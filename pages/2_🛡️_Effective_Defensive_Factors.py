@@ -105,40 +105,7 @@ with c2:
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 #################################################################################
-st.write(""" ### Adjusted Tempo [ADJ_T]        """)
 
-st.write(""" Defensive Rebound Rate (ORR) is a statistic used in basketball to measure the percentage of missed shots by a team that are rebounded by that same team. Specifically, it is the number of Defensive rebounds divided by the total number of missed field goals and missed free throws by that team.
-ORR is a useful statistic because Defensive rebounds can lead to second-chance scoring opportunities, which can be critical in close games. A team with a high ORR is generally considered to be more effective at controlling the boards and generating additional scoring opportunities.
-ORR can be calculated for individual players as well as for teams. The formula for ORR is:
-
-ORR = Defensive rebounds / (Defensive rebounds + Opponents' defensive rebounds)
-   
-  """)
-# NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df.sort_values(by=['ADJ_T'], ascending=False), x="TEAM", y="ADJ_T",
-              title='NCCA Team with Adjusted Tempo')
-fig.update_layout(legend_title=None, xaxis_title=None,
-                  yaxis_title=' Adjusted Tempo')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-c1, c2 = st.columns(2)
-
-with c1:
-    # Top 10 Team with Most Turnover Percentage Committed (Steal Rate)
-    fig = px.bar(df.sort_values(by=['ADJ_T'], ascending=False).head(10), x="TEAM", y="ADJ_T", color="TEAM",
-                 title='Top 10 Team with Most Adjusted Tempo[Log Value]', log_y=True)
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title=' Adjusted Tempo')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-with c2:
-    fig = px.bar(df2, x="parameters", y="sensitivity",
-                 title='Parameters Sensivity analysis', log_y=False)
-    fig.update_layout(legend_title=None, xaxis_title=None,
-                      yaxis_title='Sensitivity')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 ##############################################################
 st.write(""" ### Effective Field Goal Percentage Allowed  ##  """)
