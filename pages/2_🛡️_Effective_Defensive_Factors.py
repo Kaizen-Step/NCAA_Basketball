@@ -227,7 +227,7 @@ with c2:
 
 
 # NCCA Team with Adjusted Defensive Efficiency
-fig = px.area(df7.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
+fig = px.area(df3.sort_values(by=['ORB'], ascending=False), x="TEAM", y="ORB",
               title='NCCA Team with Defensive Rebound Rate (Steal Rate)')
 fig.update_layout(legend_title=None, xaxis_title=None,
                   yaxis_title=' Defensive Rebound Rate')
